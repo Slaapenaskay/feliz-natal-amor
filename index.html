@@ -15,7 +15,8 @@ html, body {
   height: 100%;
   font-family: 'Dancing Script', cursive;
   text-align: center;
-  color: #fffacd;
+  /* COR DA FONTE PRINCIPAL ALTERADA: De #fffacd (quase branco) para #2c3e50 (cinza/preto escuro) */
+  color: #2c3e50; 
   overflow-x: hidden;
   position: relative;
   /* NOVO FUNDO: Degradê suave e romântico de rosa claro */
@@ -47,10 +48,10 @@ html, body {
 }
 
 h1 {
-  /* H1 ATUALIZADO: Tamanho responsivo com limite para melhor visualização */
+  /* O H1 VAI MANTER A COR CLARA (#fffacd) para se destacar no fundo do 'inicio' antes de clicar */
   font-size: clamp(2.5em, 8vw, 4em);
   color: #fffacd;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.4); /* Sombra um pouco mais escura para contraste */
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4); 
   margin-bottom: 20px;
 }
 
@@ -86,7 +87,9 @@ button:hover {
   line-height: 1.5;
   margin-bottom: 20px;
   text-align: center;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Sombra para o texto se destacar no fundo claro */
+  /* O texto usa a cor herdada (#2c3e50), mas podemos garantir que seja preto puro se quiser. */
+  /* color: #000000; <--- Use esta linha se quiser preto P-U-R-O */
+  text-shadow: none; /* Remove a sombra que era para fundo escuro */
 }
 
 .galeria img {
