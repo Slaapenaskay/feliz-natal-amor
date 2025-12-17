@@ -1,107 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Feliz Natal ❤️</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Feliz Natal ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    /* Fundo sólido natalino vermelho-rosa garantido */
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Dancing Script', cursive;
-      text-align: center;
-      color: #fff;
-      background: #ff4d6d; /* vermelho natalino forte */
-      overflow-x: hidden;
-      position: relative;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
-    #neve {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  color: #fffacd;
+  overflow-x: hidden;
+  position: relative;
+  background: linear-gradient(180deg, #ff9aa2 0%, #ff6f91 50%, #ff4d6d 100%);
+}
 
-    .inicio, .conteudo {
-      position: relative;
-      z-index: 2;
-    }
+#neve {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
 
-    .inicio {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
+.inicio, .conteudo {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
 
-    h1 {
-      font-size: 3em;
-      color: #fffacd; /* dourado claro */
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    }
+.inicio {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    button {
-      padding: 15px 35px;
-      font-size: 1.3em;
-      border: 2px solid #ffd700;
-      border-radius: 50px;
-      background: #d62828;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+h1 {
+  font-size: 8vw; /* responsivo para celular */
+  color: #fffacd;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
 
-    button:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    }
+button {
+  padding: 15px 30px;
+  font-size: 5vw; /* responsivo */
+  border: 2px solid #ffd700;
+  border-radius: 50px;
+  background: #d62828;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    .conteudo {
-      display: none;
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
 
-    .conteudo.mostrar { opacity: 1; }
+.conteudo {
+  display: none;
+  max-width: 95%;
+  margin: auto;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
 
-    .texto {
-      font-size: 1.2em;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      color: #fffacd;
-    }
+.conteudo.mostrar { opacity: 1; }
 
-    .galeria img {
-      width: 250px;
-      border-radius: 15px;
-      margin: 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-    }
+.texto p {
+  font-size: 5vw; /* responsivo para celular */
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-    .galeria img:hover { transform: scale(1.05); }
+.galeria img {
+  width: 40vw;
+  max-width: 250px;
+  border-radius: 15px;
+  margin: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
 
-    video {
-      margin-top: 30px;
-      border-radius: 15px;
-      max-width: 90%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
-  </style>
+.galeria img:hover { transform: scale(1.05); }
+
+video {
+  margin-top: 20px;
+  border-radius: 15px;
+  width: 80vw;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+</style>
 </head>
 <body>
 
@@ -125,10 +127,7 @@
 
   <div class="texto">
     <p>Fiz este site simples, mas foi feito com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
-    
-    <!-- SEGUNDO PARÁGRAFO RECUPERADO -->
     <p>Sei que estamos num momento delicado, apesar de tudo, eu continuo te amando loucamente, meu amor. Ainda amo tudo em você, sua risada, seu jeitinho esquisito que eu amo. Continuo sendo o mesmo menino apaixonado por você.</p>
-    
     <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos gatinhos e cachorros. Feliz Natal! ❤️</p>
     <p>Ano que vem vou fazer algo ainda mais inesquecível pra você.<br><strong>Kay</strong></p>
   </div>
@@ -214,4 +213,3 @@ setInterval(desenharNeve,30);
 
 </body>
 </html>
-
