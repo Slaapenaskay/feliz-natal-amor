@@ -8,18 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* 🎨 ESTILO ATUALIZADO (Fundo Romântico Suave) */
+/* 🎨 ESTILO FINAL (Fundo Romântico Suave e Fonte Escura) */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Dancing Script', cursive;
   text-align: center;
-  /* COR DA FONTE PRINCIPAL ALTERADA: De #fffacd (quase branco) para #2c3e50 (cinza/preto escuro) */
-  color: #2c3e50; 
+  color: #2c3e50; /* Cinza escuro para melhor legibilidade */
   overflow-x: hidden;
   position: relative;
-  /* NOVO FUNDO: Degradê suave e romântico de rosa claro */
+  /* Degradê suave e romântico de rosa claro */
   background: linear-gradient(180deg, #fcebeb 0%, #f9d8e5 50%, #f5c2d7 100%); 
 }
 
@@ -48,7 +47,7 @@ html, body {
 }
 
 h1 {
-  /* O H1 VAI MANTER A COR CLARA (#fffacd) para se destacar no fundo do 'inicio' antes de clicar */
+  /* Mantém cor clara para se destacar na página de início */
   font-size: clamp(2.5em, 8vw, 4em);
   color: #fffacd;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.4); 
@@ -87,9 +86,7 @@ button:hover {
   line-height: 1.5;
   margin-bottom: 20px;
   text-align: center;
-  /* O texto usa a cor herdada (#2c3e50), mas podemos garantir que seja preto puro se quiser. */
-  /* color: #000000; <--- Use esta linha se quiser preto P-U-R-O */
-  text-shadow: none; /* Remove a sombra que era para fundo escuro */
+  text-shadow: none;
 }
 
 .galeria img {
@@ -137,6 +134,9 @@ video {
     <p>Sei que estamos num momento delicado, apesar de tudo, eu continuo te amando loucamente, meu amor. Ainda amo tudo em você, sua risada, seu jeitinho esquisito que eu amo. Continuo sendo o mesmo menino apaixonado por você.</p>
     <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos gatinhos e cachorros. Feliz Natal! ❤️</p>
     <p>Ano que vem vou fazer algo ainda mais inesquecível pra você.<br><strong>Kay</strong></p>
+
+    <p id="contador-tempo" style="font-size: 4.5vw; color: #d62828; font-weight: bold; margin-top: 30px;"></p>
+
   </div>
 
   <div class="galeria">
@@ -197,7 +197,7 @@ function desenharNeve() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
   for(let i=0;i<flocos.length;i++){
     let f = flocos[i];
-    /* COR DOS CORAÇÕES ATUALIZADA (Pink Vibrante) */
+    /* COR DOS CORAÇÕES (Pink Vibrante) */
     ctx.fillStyle = f.tipo === 'neve' ? "rgba(255,255,255,0.8)" : "rgba(255, 50, 150, 0.9)";
     ctx.beginPath();
     ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
@@ -217,6 +217,40 @@ function moverNeve(){
 }
 
 setInterval(desenharNeve,30);
+
+// ===================================
+// ⏳ CÓDIGO DO CONTADOR DE TEMPO
+// ===================================
+
+/* MUITO IMPORTANTE: MUDAR A DATA ABAIXO para a data correta do início do namoro de 5 anos */
+const dataInicioNamoro = new Date("2020-12-20"); 
+
+function atualizarContador() {
+  const agora = new Date();
+  const diferenca = agora - dataInicioNamoro;
+
+  const diasTotal = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+  const anos = Math.floor(diasTotal / 365.25);
+  const meses = Math.floor((diasTotal % 365.25) / 30.4375); 
+  const diasRestantes = Math.floor(diasTotal - (anos * 365.25) - (meses * 30.4375));
+  
+  let textoContador = `Estamos juntos há: `;
+  
+  if (diasTotal > 0) {
+      textoContador = `Estamos juntos há: ${anos} ano(s), ${meses} mês(es) e ${diasRestantes} dia(s) ❤️`;
+  } else {
+      textoContador = "Em breve começaremos nossa jornada!";
+  }
+
+  const elementoContador = document.getElementById("contador-tempo");
+  if (elementoContador) {
+    elementoContador.innerHTML = textoContador;
+  }
+}
+
+atualizarContador();
+setInterval(atualizarContador, 1000 * 60 * 60 * 24); 
+
 </script>
 
 </body>
