@@ -3,15 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Feliz Natal ❤️</title>
+  
+  <!-- Fonte cursiva romântica -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #f6fff8, #ffeef2);
-      color: #333;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(180deg, #ffefef, #fff5f0);
       text-align: center;
+      color: #333;
       position: relative;
+      overflow-x: hidden;
+    }
+
+    /* NEVE + CORAÇÕES */
+    #neve {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .inicio, .conteudo {
@@ -29,22 +44,28 @@
     }
 
     h1 {
-      font-size: 2.4em;
+      font-size: 3em;
+      font-family: 'Dancing Script', cursive;
+      color: #d62828;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 30px;
+      padding: 15px 35px;
+      font-size: 1.3em;
+      border: 2px solid #ffd700;
+      border-radius: 50px;
       background: #d62828;
       color: white;
       cursor: pointer;
-      transition: transform 0.2s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-family: 'Dancing Script', cursive;
     }
 
     button:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
 
     .conteudo {
@@ -52,12 +73,18 @@
       max-width: 900px;
       margin: auto;
       padding: 40px 20px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
+    .conteudo.mostrar { opacity: 1; }
+
     .texto {
-      font-size: 1.1em;
+      font-size: 1.2em;
       line-height: 1.6;
       margin-bottom: 30px;
+      font-family: 'Dancing Script', cursive;
+      color: #333;
     }
 
     .controle-musica {
@@ -69,23 +96,18 @@
       border-radius: 15px;
       margin: 10px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
     }
 
     video {
       margin-top: 30px;
       border-radius: 15px;
       max-width: 90%;
-    }
-
-    /* NEVE */
-    #neve {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
   </style>
 </head>
@@ -104,6 +126,7 @@
 
   <audio id="musica" loop>
     <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
   </audio>
 
   <div class="controle-musica">
@@ -111,31 +134,11 @@
   </div>
 
   <div class="texto">
-    <p>
-      Fiz este site simples, mas foi feito com muito carinho.
-      Mesmo sem dinheiro, eu queria te dar algo que viesse de mim.
-      Obrigado por estar comigo, pelo cuidado, pela paciência e pelos momentos bons.
-      Eu te amo demais, mesmo com nossos problemas e defeitos, amo o tempo que passo com você.
-    </p>
-
-    <p>
-      Sei que estamos num momento delicado, apesar de tudo, eu continuo te amando loucamente, meu amor.
-      Ainda amo tudo em você, sua risada, seu jeitinho esquisito que eu amo.
-      Continuo sendo o mesmo menino apaixonado por você.
-    </p>
-
-    <p>
-      Espero poder construir nosso futuro, resolver todas as inseguranças
-      e conseguir ter nossa casinha com nossos filhos
-      (gatinhos e cachorros).
-      Eu te amo, amor. Feliz Natal ❤️
-    </p>
-
-    <p>
-      Ano que vem vou fazer um presente inesquecível pra você.
-      Me desculpa por fazer algo tão simples.
-      <br><strong>Kay</strong>
-    </p>
+    <p>Fiz este site simples, mas foi feito com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
+    <p>Obrigado por estar comigo, pelo cuidado, pela paciência e pelos momentos bons. Eu te amo demais, mesmo com nossos problemas e defeitos.</p>
+    <p>Sei que estamos num momento delicado, mas continuo te amando loucamente. Amo seu jeito, sua risada, seu jeitinho único.</p>
+    <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos gatinhos e cachorros. Feliz Natal! ❤️</p>
+    <p>Ano que vem vou fazer algo ainda mais inesquecível pra você.<br><strong>Kay</strong></p>
   </div>
 
   <div class="galeria">
@@ -146,6 +149,7 @@
 
   <video controls playsinline>
     <source src="video.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo.
   </video>
 
 </div>
@@ -154,24 +158,23 @@
 /* SURPRESA + MÚSICA */
 function iniciar() {
   document.getElementById("inicio").style.display = "none";
-  document.getElementById("conteudo").style.display = "block";
+  const conteudo = document.getElementById("conteudo");
+  conteudo.style.display = "block";
+  setTimeout(()=> conteudo.classList.add('mostrar'), 50);
 
   const musica = document.getElementById("musica");
   musica.volume = 0.4;
-  musica.play();
+  musica.play().catch(()=>{});
 }
 
 /* PAUSAR / TOCAR */
 function toggleMusica() {
   const musica = document.getElementById("musica");
-  if (musica.paused) {
-    musica.play();
-  } else {
-    musica.pause();
-  }
+  if (musica.paused) musica.play().catch(()=>{});
+  else musica.pause();
 }
 
-/* NEVE */
+/* NEVE + CORAÇÕES */
 const canvas = document.getElementById("neve");
 const ctx = canvas.getContext("2d");
 
@@ -179,58 +182,47 @@ function ajustarCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
-
 ajustarCanvas();
 window.addEventListener("resize", ajustarCanvas);
 
 let flocos = [];
-
-for (let i = 0; i < 80; i++) {
+for(let i=0;i<60;i++){
   flocos.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 3 + 1,
-    d: Math.random() + 1
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*3+1,
+    d: Math.random()+1,
+    tipo: Math.random() < 0.8 ? 'neve' : 'coracao'
   });
 }
 
 let angulo = 0;
-
 function desenharNeve() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(255,255,255,0.8)";
+  ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.beginPath();
-
-  for (let i = 0; i < flocos.length; i++) {
+  for(let i=0;i<flocos.length;i++){
     let f = flocos[i];
-    ctx.moveTo(f.x, f.y);
-    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+    ctx.fillStyle = f.tipo === 'neve' ? "rgba(255,255,255,0.8)" : "rgba(255,0,100,0.7)";
+    ctx.beginPath();
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+    ctx.fill();
   }
-
-  ctx.fill();
   moverNeve();
 }
 
-function moverNeve() {
-  angulo += 0.01;
-  for (let i = 0; i < flocos.length; i++) {
+function moverNeve(){
+  angulo+=0.01;
+  for(let i=0;i<flocos.length;i++){
     let f = flocos[i];
-    f.y += Math.pow(f.d, 2) + 1;
-    f.x += Math.sin(angulo) * 1.5;
-
-    if (f.y > canvas.height) {
-      flocos[i] = {
-        x: Math.random() * canvas.width,
-        y: 0,
-        r: f.r,
-        d: f.d
-      };
-    }
+    f.y += Math.pow(f.d,2)+1;
+    f.x += Math.sin(angulo)*1.5;
+    if(f.y > canvas.height) flocos[i] = {x:Math.random()*canvas.width, y:0, r:f.r, d:f.d, tipo:f.tipo};
   }
 }
 
-setInterval(desenharNeve, 30);
+setInterval(desenharNeve,30);
 </script>
 
 </body>
 </html>
+
