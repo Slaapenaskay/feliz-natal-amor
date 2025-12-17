@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+/* 🎨 ESTILO ATUALIZADO (Fundo Romântico Suave) */
 html, body {
   margin: 0;
   padding: 0;
@@ -17,7 +18,8 @@ html, body {
   color: #fffacd;
   overflow-x: hidden;
   position: relative;
-  background: linear-gradient(180deg, #ff9aa2 0%, #ff6f91 50%, #ff4d6d 100%);
+  /* NOVO FUNDO: Degradê suave e romântico de rosa claro */
+  background: linear-gradient(180deg, #fcebeb 0%, #f9d8e5 50%, #f5c2d7 100%); 
 }
 
 #neve {
@@ -45,9 +47,10 @@ html, body {
 }
 
 h1 {
-  font-size: 8vw; /* responsivo para celular */
+  /* H1 ATUALIZADO: Tamanho responsivo com limite para melhor visualização */
+  font-size: clamp(2.5em, 8vw, 4em);
   color: #fffacd;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4); /* Sombra um pouco mais escura para contraste */
   margin-bottom: 20px;
 }
 
@@ -83,6 +86,7 @@ button:hover {
   line-height: 1.5;
   margin-bottom: 20px;
   text-align: center;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Sombra para o texto se destacar no fundo claro */
 }
 
 .galeria img {
@@ -190,7 +194,8 @@ function desenharNeve() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
   for(let i=0;i<flocos.length;i++){
     let f = flocos[i];
-    ctx.fillStyle = f.tipo === 'neve' ? "rgba(255,255,255,0.8)" : "rgba(255,0,100,0.7)";
+    /* COR DOS CORAÇÕES ATUALIZADA (Pink Vibrante) */
+    ctx.fillStyle = f.tipo === 'neve' ? "rgba(255,255,255,0.8)" : "rgba(255, 50, 150, 0.9)";
     ctx.beginPath();
     ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
     ctx.fill();
