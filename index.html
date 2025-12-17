@@ -1,26 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <title>Feliz Natal ❤️</title>
   
-  <!-- Fonte cursiva romântica -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    /* Fundo sólido natalino vermelho-rosa garantido */
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: 'Dancing Script', cursive;
       text-align: center;
-      color: #333;
-      position: relative;
+      color: #fff;
+      background: #ff4d6d; /* vermelho natalino forte */
       overflow-x: hidden;
-      /* Fundo natalino só com CSS, sem precisar de imagem */
-      background: radial-gradient(circle at top, #ffe6e6, #ffcccc, #ffb3b3, #ff9999);
+      position: relative;
     }
 
-    /* NEVE + CORAÇÕES */
     #neve {
       position: fixed;
       top: 0;
@@ -47,8 +46,8 @@
 
     h1 {
       font-size: 3em;
-      color: #d62828;
-      text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+      color: #fffacd; /* dourado claro */
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
     }
 
     button {
@@ -83,30 +82,24 @@
       font-size: 1.2em;
       line-height: 1.6;
       margin-bottom: 30px;
-      color: #333;
-    }
-
-    .controle-musica {
-      margin: 20px 0;
+      color: #fffacd;
     }
 
     .galeria img {
       width: 250px;
       border-radius: 15px;
       margin: 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       transition: transform 0.3s;
     }
 
-    .galeria img:hover {
-      transform: scale(1.05);
-    }
+    .galeria img:hover { transform: scale(1.05); }
 
     video {
       margin-top: 30px;
       border-radius: 15px;
       max-width: 90%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
   </style>
 </head>
@@ -114,13 +107,11 @@
 
 <canvas id="neve"></canvas>
 
-<!-- TELA INICIAL -->
 <div class="inicio" id="inicio">
   <h1>🎄 Feliz Natal, meu amor ❤️</h1>
   <button onclick="iniciar()">Surpresa 🎁</button>
 </div>
 
-<!-- CONTEÚDO -->
 <div class="conteudo" id="conteudo">
 
   <audio id="musica" loop>
@@ -134,8 +125,10 @@
 
   <div class="texto">
     <p>Fiz este site simples, mas foi feito com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
-    <p>Obrigado por estar comigo, pelo cuidado, pela paciência e pelos momentos bons. Eu te amo demais, mesmo com nossos problemas e defeitos.</p>
-    <p>Sei que estamos num momento delicado, mas continuo te amando loucamente. Amo seu jeito, sua risada, seu jeitinho único.</p>
+    
+    <!-- SEGUNDO PARÁGRAFO RECUPERADO -->
+    <p>Sei que estamos num momento delicado, apesar de tudo, eu continuo te amando loucamente, meu amor. Ainda amo tudo em você, sua risada, seu jeitinho esquisito que eu amo. Continuo sendo o mesmo menino apaixonado por você.</p>
+    
     <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos gatinhos e cachorros. Feliz Natal! ❤️</p>
     <p>Ano que vem vou fazer algo ainda mais inesquecível pra você.<br><strong>Kay</strong></p>
   </div>
@@ -154,7 +147,6 @@
 </div>
 
 <script>
-/* SURPRESA + MÚSICA */
 function iniciar() {
   document.getElementById("inicio").style.display = "none";
   const conteudo = document.getElementById("conteudo");
@@ -166,7 +158,6 @@ function iniciar() {
   musica.play().catch(()=>{});
 }
 
-/* PAUSAR / TOCAR */
 function toggleMusica() {
   const musica = document.getElementById("musica");
   if (musica.paused) musica.play().catch(()=>{});
@@ -223,3 +214,4 @@ setInterval(desenharNeve,30);
 
 </body>
 </html>
+
