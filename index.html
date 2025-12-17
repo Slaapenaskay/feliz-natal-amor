@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Natal ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #f6fff8, #ffeef2);
+      color: #333;
+      text-align: center;
+    }
+
+    .inicio {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.4em;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 30px;
+      background: #d62828;
+      color: white;
+      cursor: pointer;
+    }
+
+    .conteudo {
+      display: none;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .galeria img {
+      width: 250px;
+      border-radius: 15px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="inicio" id="inicio">
+  <h1>🎄 Feliz Natal, meu amor ❤️</h1>
+  <button onclick="iniciar()">Surpresa 🎁</button>
+</div>
+
+<div class="conteudo" id="conteudo">
+
+  <audio id="musica" controls loop>
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <p>
+    Fiz este site simples, mas foi feito com muito carinho.
+    Mesmo sem dinheiro, eu queria te dar algo que viesse de mim.
+  </p>
+
+  <div class="galeria">
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+    <img src="foto3.jpg">
+  </div>
+
+  <video width="300" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+</div>
+
+<script>
+function iniciar() {
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("conteudo").style.display = "block";
+}
+</script>
+
+</body>
+</html>
