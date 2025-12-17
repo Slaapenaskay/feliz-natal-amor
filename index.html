@@ -8,14 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* 🎨 ESTILO FINAL (Fundo Romântico Suave e Fonte Escura) */
+/* 🎨 ESTILOS GERAIS */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Dancing Script', cursive;
   text-align: center;
-  color: #2c3e50; /* Cinza escuro para melhor legibilidade */
+  color: #2c3e50; /* Cinza escuro para melhor legibilidade no fundo claro */
   overflow-x: hidden;
   position: relative;
   /* Degradê suave e romântico de rosa claro */
@@ -107,6 +107,23 @@ video {
   max-width: 400px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
+
+/* 🌟 NOVO ESTILO: Efeito de explosão ao clicar */
+@keyframes explode {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.click-effect {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ffd700, #ff4d6d); /* Ouro e Vermelho */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  animation: explode 0.5s forwards;
+}
 </style>
 </head>
 <body>
@@ -115,7 +132,7 @@ video {
 
 <div class="inicio" id="inicio">
   <h1>🎄 Feliz Natal, meu amor ❤️</h1>
-  <button onclick="iniciar()">Surpresa 🎁</button>
+  <button onclick="iniciar(event)">Surpresa 🎁</button>
 </div>
 
 <div class="conteudo" id="conteudo">
@@ -153,12 +170,26 @@ video {
 </div>
 
 <script>
-function iniciar() {
+// 🌟 FUNÇÃO INICIAR ALTERADA PARA INCLUIR O EFEITO DE CLIQUE
+function iniciar(event) {
+  // 1. Cria o efeito visual no local do clique
+  if (event) {
+    const clickEffect = document.createElement('div');
+    clickEffect.className = 'click-effect';
+    clickEffect.style.left = event.clientX + 'px';
+    clickEffect.style.top = event.clientY + 'px';
+    document.body.appendChild(clickEffect);
+    // Remove o efeito após a animação
+    setTimeout(() => clickEffect.remove(), 500);
+  }
+
+  // 2. Lógica de iniciar o conteúdo
   document.getElementById("inicio").style.display = "none";
   const conteudo = document.getElementById("conteudo");
   conteudo.style.display = "block";
   setTimeout(()=> conteudo.classList.add('mostrar'), 50);
 
+  // 3. Toca a música
   const musica = document.getElementById("musica");
   musica.volume = 0.4;
   musica.play().catch(()=>{});
@@ -222,7 +253,7 @@ setInterval(desenharNeve,30);
 // ⏳ CÓDIGO DO CONTADOR DE TEMPO
 // ===================================
 
-/* MUITO IMPORTANTE: MUDAR A DATA ABAIXO para a data correta do início do namoro de 5 anos */
+/* MUITO IMPORTANTE: MUDAR ESTA DATA (YYYY-MM-DD) para a data correta do início do namoro de 5 anos */
 const dataInicioNamoro = new Date("2020-12-20"); 
 
 function atualizarContador() {
@@ -234,7 +265,7 @@ function atualizarContador() {
   const meses = Math.floor((diasTotal % 365.25) / 30.4375); 
   const diasRestantes = Math.floor(diasTotal - (anos * 365.25) - (meses * 30.4375));
   
-  let textoContador = `Estamos juntos há: `;
+  let textoContador;
   
   if (diasTotal > 0) {
       textoContador = `Estamos juntos há: ${anos} ano(s), ${meses} mês(es) e ${diasRestantes} dia(s) ❤️`;
