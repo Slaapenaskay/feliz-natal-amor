@@ -2,218 +2,164 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Feliz Natal, Meu Amor ❤️</title>
+<title>Natal Especial ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* 🎨 RESET E FUNDO NATALINO EXTREMO */
+/* 🎨 TEMA NATALINO FORÇADO */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Dancing Script', cursive;
+  background-color: #9b111e; /* Vermelho Natal */
+  color: white;
   overflow-x: hidden;
-  background-color: #7b0909; /* Vermelho Natalino */
 }
 
 #neve {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 1;
 }
 
-/* 🏠 TELA DE INÍCIO (O QUE VOCÊ QUERIA MUDAR) */
-.inicio {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  /* Degradê forte que lembra decoração de Natal */
-  background: radial-gradient(circle, #af0404 0%, #4b0000 100%);
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  z-index: 100;
-  transition: transform 1s ease-in-out, opacity 1s;
+/* 🏠 TELA DE INÍCIO - IMPACTO TOTAL */
+.capa-inicial {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle, #d62828 0%, #4b0000 100%);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  z-index: 100; transition: 0.8s ease-in-out;
 }
 
-.decoracao-viva {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 10px #ffd700);
-    animation: flutuar 3s infinite ease-in-out;
-}
-
-@keyframes flutuar {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-}
-
-.inicio h1 {
+.capa-inicial h1 {
   font-size: clamp(3em, 12vw, 5em);
-  color: #ffd700; /* DOURADO */
-  text-shadow: 3px 3px 20px rgba(255, 215, 0, 0.7), 2px 2px 5px #000;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   margin-bottom: 30px;
-  padding: 0 10px;
 }
 
-.botao-natal {
-  padding: 20px 50px;
-  font-size: 1.5rem;
-  border: 3px solid #ffd700;
-  border-radius: 50px;
-  background: #1b4332; /* VERDE PINHEIRO */
-  color: #fff;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
-  box-shadow: 0 0 15px #ffd700;
-  animation: pulsar 2s infinite;
-  z-index: 101;
+.btn-surpresa {
+  padding: 20px 50px; font-size: 1.8rem; border-radius: 50px;
+  border: 4px solid #ffd700; background: #1b4332; /* Verde */
+  color: white; cursor: pointer; font-weight: bold;
+  box-shadow: 0 0 30px #ffd700; animation: pulsar 2s infinite;
 }
 
 @keyframes pulsar {
-    0% { transform: scale(1); box-shadow: 0 0 15px #ffd700; }
-    50% { transform: scale(1.1); box-shadow: 0 0 30px #ffd700; }
-    100% { transform: scale(1); box-shadow: 0 0 15px #ffd700; }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
-/* 📖 CONTEÚDO (DEPOIS DO CLIQUE) */
-.conteudo {
-  display: none;
-  position: relative;
-  z-index: 2;
-  padding: 20px;
-  background: linear-gradient(180deg, #fcebeb 0%, #f9d8e5 100%); /* Volta para o romântico */
-  min-height: 100vh;
-  color: #2c3e50;
+/* 📖 CONTEÚDO E PÁGINAS */
+.conteudo-principal {
+  display: none; padding: 20px; position: relative; z-index: 10;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
 }
 
-.texto-caixa {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin: 20px auto;
-    font-size: 1.4rem;
+.caixa-texto {
+  background: rgba(255, 255, 255, 0.95);
+  color: #2c3e50; padding: 25px; border-radius: 20px;
+  max-width: 500px; width: 90%; margin: 20px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 1.4rem;
+  display: none; /* Escondido por padrão, JavaScript mostra */
 }
 
-.galeria img {
-  width: 45%; max-width: 200px;
-  margin: 5px; border-radius: 10px;
-  border: 4px solid white;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+.caixa-texto.ativa { display: block; animation: fadeIn 1s; }
+
+.foto {
+  width: 250px; border: 8px solid white; border-radius: 10px;
+  transform: rotate(-3deg); margin-bottom: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-video { width: 90%; max-width: 400px; border-radius: 15px; margin-top: 20px; }
-
-/* EFEITO DE CLIQUE */
-.click-effect {
-  position: absolute; width: 20px; height: 20px;
-  background: #ffd700; border-radius: 50%;
-  pointer-events: none; z-index: 200;
-  animation: explode 0.6s forwards;
+.btn-proximo {
+  background: #ffd700; color: #7b0909; border: none;
+  padding: 12px 30px; border-radius: 30px; font-weight: bold;
+  font-family: 'Dancing Script', cursive; font-size: 1.3rem; cursor: pointer;
 }
-@keyframes explode { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
 
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
 
 <canvas id="neve"></canvas>
 
-<div class="inicio" id="inicio">
-  <div class="decoracao-viva">🎄 🎁 ✨ ❄️</div>
-  <h1>Feliz Natal, Meu Amor ❤️</h1>
-  <button class="botao-natal" onclick="iniciar(event)">Abrir Surpresa 🎁</button>
+<div class="capa-inicial" id="capa">
+  <div style="font-size: 4rem;">🎄 🎁 ✨</div>
+  <h1>Feliz Natal ❤️</h1>
+  <button class="btn-surpresa" onclick="abrirSite()">Surpresa 🎁</button>
 </div>
 
-<div class="conteudo" id="conteudo">
+<div class="conteudo-principal" id="site" style="display: none;">
   
   <audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 
-  <div class="texto-caixa">
-    <p>Fiz este site simples, mas foi feito com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
-    <p>Sei que estamos num momento delicado, apesar de tudo, eu continuo te amando loucamente, meu amor.</p>
-    <p>Continuo sendo o mesmo menino apaixonado por você.</p>
-    
-    <p id="contador-tempo" style="color: #d62828; font-weight: bold; margin-top: 20px;"></p>
+  <div id="pag1" class="caixa-texto ativa">
+    <img src="foto1.jpg" class="foto" alt="Nossa Foto">
+    <p>Fiz este site com muito carinho para você. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
+    <p>Sei que estamos num momento delicado, mas meu amor não mudou.</p>
+    <button class="btn-proximo" onclick="irParaPag2()">Virar Página ➔</button>
   </div>
 
-  <div class="galeria">
-    <img src="foto1.jpg">
-    <img src="foto2.jpg">
-    <img src="foto3.jpg">
+  <div id="pag2" class="caixa-texto">
+    <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos bichinhos. ❤️</p>
+    <p>Continuo sendo o mesmo menino apaixonado por você. Feliz Natal!</p>
+    <p id="contador" style="color: #d62828; font-weight: bold; margin-top: 15px;"></p>
+    <p><strong>Com amor, Kay</strong></p>
   </div>
 
-  <video controls playsinline><source src="video.mp4" type="video/mp4"></video>
-
-  <p style="margin-top: 20px;">Com amor, <strong>Kay</strong> ❤️</p>
 </div>
 
 <script>
-function iniciar(event) {
-  // Efeito de clique
-  const effect = document.createElement('div');
-  effect.className = 'click-effect';
-  effect.style.left = event.clientX + 'px';
-  effect.style.top = event.clientY + 'px';
-  document.body.appendChild(effect);
-  setTimeout(() => effect.remove(), 600);
+function abrirSite() {
+  // Toca música
+  const m = document.getElementById("musica");
+  m.volume = 0.4;
+  m.play();
 
-  // Esconde o início com animação
-  const telaInicio = document.getElementById("inicio");
-  telaInicio.style.opacity = "0";
-  telaInicio.style.transform = "scale(1.2)";
-
+  // Transição de tela
+  document.getElementById("capa").style.opacity = "0";
   setTimeout(() => {
-    telaInicio.style.display = "none";
-    const conteudo = document.getElementById("conteudo");
-    conteudo.style.display = "block";
-    
-    const musica = document.getElementById("musica");
-    musica.volume = 0.4;
-    musica.play().catch(()=>{});
-  }, 1000);
+    document.getElementById("capa").style.display = "none";
+    document.getElementById("site").style.display = "flex";
+  }, 800);
 }
 
-/* NEVE */
+function irParaPag2() {
+  document.getElementById("pag1").classList.remove("ativa");
+  setTimeout(() => {
+    document.getElementById("pag1").style.display = "none";
+    document.getElementById("pag2").classList.add("ativa");
+  }, 10);
+}
+
+// NEVE
 const canvas = document.getElementById("neve");
 const ctx = canvas.getContext("2d");
-function ajustar() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-ajustar();
-window.onresize = ajustar;
-
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize(); window.onresize = resize;
 let flocos = [];
-for(let i=0; i<80; i++) {
-    flocos.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*3+1, d: Math.random()+1 });
+for(let i=0; i<100; i++) flocos.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*3+1, d: Math.random()+1});
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = "white";
+  ctx.beginPath();
+  for(let f of flocos) {
+    ctx.moveTo(f.x, f.y); ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+    f.y += f.d; if(f.y > canvas.height) f.y = -10;
+  }
+  ctx.fill();
 }
+setInterval(draw, 30);
 
-function desenhar() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = "white";
-    ctx.beginPath();
-    for(let f of flocos) {
-        ctx.moveTo(f.x, f.y);
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
-        f.y += f.d;
-        if(f.y > canvas.height) f.y = -10;
-    }
-    ctx.fill();
+// CONTADOR
+const data = new Date("2020-12-20");
+function update() {
+  const diff = new Date() - data;
+  const dias = Math.floor(diff / (1000*60*60*24));
+  document.getElementById("contador").innerText = `Juntos há ${dias} dias! ❤️`;
 }
-setInterval(desenhar, 30);
-
-/* CONTADOR */
-const dataInicio = new Date("2020-12-20");
-function atualizar() {
-    const agora = new Date();
-    const diff = agora - dataInicio;
-    const dias = Math.floor(diff / (1000*60*60*24));
-    const anos = Math.floor(dias / 365.25);
-    const meses = Math.floor((dias % 365.25) / 30.43);
-    const dRestantes = Math.floor(dias - (anos*365.25) - (meses*30.43));
-    document.getElementById("contador-tempo").innerText = `Juntos há ${anos} anos, ${meses} meses e ${dRestantes} dias ❤️`;
-}
-atualizar();
+update();
 </script>
 
 </body>
