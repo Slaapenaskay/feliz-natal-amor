@@ -2,18 +2,19 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Natal Especial ❤️</title>
+<title>Feliz Natal, Meu Amor ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* 🎨 TEMA NATALINO FORÇADO */
+/* 🎨 CONFIGURAÇÕES GERAIS */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Dancing Script', cursive;
-  background-color: #9b111e; /* Vermelho Natal */
-  color: white;
+  text-align: center;
+  color: #2c3e50;
+  background: linear-gradient(180deg, #7b0909 0%, #d62828 50%, #f9d8e5 100%);
   overflow-x: hidden;
 }
 
@@ -22,124 +23,210 @@ body {
   pointer-events: none; z-index: 1;
 }
 
-/* 🏠 TELA DE INÍCIO - IMPACTO TOTAL */
-.capa-inicial {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle, #d62828 0%, #4b0000 100%);
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  z-index: 100; transition: 0.8s ease-in-out;
+/* 🏠 TELA DE INÍCIO (CAPA) */
+.inicio {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  background: radial-gradient(circle, #af0404 0%, #4b0000 100%);
 }
 
-.capa-inicial h1 {
-  font-size: clamp(3em, 12vw, 5em);
+.inicio h1 {
+  font-size: clamp(2.5em, 10vw, 4.5em);
   color: #ffd700;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
   margin-bottom: 30px;
 }
 
-.btn-surpresa {
-  padding: 20px 50px; font-size: 1.8rem; border-radius: 50px;
-  border: 4px solid #ffd700; background: #1b4332; /* Verde */
-  color: white; cursor: pointer; font-weight: bold;
-  box-shadow: 0 0 30px #ffd700; animation: pulsar 2s infinite;
+.btn-iniciar {
+  padding: 18px 45px;
+  font-size: 1.8rem;
+  border: 3px solid #ffd700;
+  border-radius: 50px;
+  background: #1b4332;
+  color: white;
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  animation: pulsar 2s infinite;
 }
 
 @keyframes pulsar {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.05); }
 }
 
-/* 📖 CONTEÚDO E PÁGINAS */
-.conteudo-principal {
-  display: none; padding: 20px; position: relative; z-index: 10;
-  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+/* 📖 CONTEÚDO (APÓS O CLIQUE) */
+.conteudo {
+  display: none; /* Começa escondido */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 15px;
+  position: relative;
+  z-index: 5;
 }
 
-.caixa-texto {
+.bloco {
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+}
+
+.bloco.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.texto-caixa {
   background: rgba(255, 255, 255, 0.95);
-  color: #2c3e50; padding: 25px; border-radius: 20px;
-  max-width: 500px; width: 90%; margin: 20px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 1.4rem;
-  display: none; /* Escondido por padrão, JavaScript mostra */
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: #333;
 }
-
-.caixa-texto.ativa { display: block; animation: fadeIn 1s; }
 
 .foto {
-  width: 250px; border: 8px solid white; border-radius: 10px;
-  transform: rotate(-3deg); margin-bottom: 15px;
+  width: 90%;
+  max-width: 300px;
+  border: 8px solid white;
+  border-radius: 5px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  margin: 15px auto;
+  display: block;
 }
 
-.btn-proximo {
-  background: #ffd700; color: #7b0909; border: none;
-  padding: 12px 30px; border-radius: 30px; font-weight: bold;
-  font-family: 'Dancing Script', cursive; font-size: 1.3rem; cursor: pointer;
+video {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 15px;
+  border: 5px solid white;
+  margin-top: 30px;
 }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+#contador {
+  font-weight: bold;
+  color: #d62828;
+  font-size: 1.6rem;
+  margin-top: 15px;
+}
+
+/* Efeito de clique */
+.click-effect {
+  position: absolute; width: 20px; height: 20px;
+  background: #ffd700; border-radius: 50%;
+  pointer-events: none; z-index: 100;
+  animation: explode 0.5s forwards;
+}
+@keyframes explode { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
 </style>
 </head>
 <body>
 
 <canvas id="neve"></canvas>
 
-<div class="capa-inicial" id="capa">
-  <div style="font-size: 4rem;">🎄 🎁 ✨</div>
-  <h1>Feliz Natal ❤️</h1>
-  <button class="btn-surpresa" onclick="abrirSite()">Surpresa 🎁</button>
+<div class="inicio" id="inicio">
+  <div style="font-size: 4rem; margin-bottom: 10px;">🎄 ✨ 🎁</div>
+  <h1>Feliz Natal, Meu Amor ❤️</h1>
+  <button class="btn-iniciar" onclick="iniciarSite(event)">Ver Minha Surpresa 🎁</button>
 </div>
 
-<div class="conteudo-principal" id="site" style="display: none;">
-  
+<div class="conteudo" id="conteudo">
   <audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 
-  <div id="pag1" class="caixa-texto ativa">
-    <img src="foto1.jpg" class="foto" alt="Nossa Foto">
-    <p>Fiz este site com muito carinho para você. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
-    <p>Sei que estamos num momento delicado, mas meu amor não mudou.</p>
-    <button class="btn-proximo" onclick="irParaPag2()">Virar Página ➔</button>
+  <div class="bloco texto-caixa">
+    <p>Fiz este site simples, mas foi feito com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
+    <p>Sei que estamos num momento delicado, mas, apesar de tudo, eu continuo te amando loucamente, meu amor. Ainda amo tudo em você: sua risada, seu jeitinho esquisito que eu amo. Continuo sendo o mesmo menino apaixonado por você.</p>
   </div>
 
-  <div id="pag2" class="caixa-texto">
-    <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos bichinhos. ❤️</p>
-    <p>Continuo sendo o mesmo menino apaixonado por você. Feliz Natal!</p>
-    <p id="contador" style="color: #d62828; font-weight: bold; margin-top: 15px;"></p>
-    <p><strong>Com amor, Kay</strong></p>
+  <img src="foto1.jpg" class="bloco foto">
+
+  <div class="bloco texto-caixa">
+    <p>Nossa história sempre foi um tanto conturbada; temos muitos problemas e coisas não resolvidas que nos afetam hoje em dia. Mas quero que saiba que eu ainda estou aqui, ainda estou me esforçando por nós e eu a amo. Sonho em construir nosso futuro juntos.</p>
+  </div>
+
+  <img src="foto2.jpg" class="bloco foto">
+
+  <div class="bloco texto-caixa">
+    <p>Eu sempre admirei você: seu jeito delicado para cuidar das coisas, seu esforço em querer sempre melhorar, sua força, sua vontade e seu desejo de querer mudar. Eu sei o quanto você é forte e eu amo isso em você.</p>
+  </div>
+
+  <img src="foto3.jpg" class="bloco foto">
+
+  <div class="bloco texto-caixa">
+    <p>Eu amo seu carinho, amo o jeito que nós dois somos carentes; chega a ser engraçado, às vezes, o quanto somos grudentos um com o outro. Mas eu amo isso! Amo ficar agarradinho com você, mesmo quando a gente não faz nada. Eu adoro esses momentos com você.</p>
+  </div>
+
+  <img src="foto4.jpg" class="bloco foto">
+
+  <div class="bloco texto-caixa">
+    <p>Eu amo seu jeitinho meio maluca. Quando você fala: "Aonde você iria encontrar outra igual a mim?", eu sempre dou uma risada, mas no fundo eu concordo. Não existe outra além de você para mim. Seu jeito é único e eu a amo.</p>
+  </div>
+
+  <img src="foto5.jpg" class="bloco foto">
+
+  <div class="bloco texto-caixa">
+    <p>Eu queria pedir desculpas. Sei que já errei bastante com você e sinto muito por todas as vezes que já fiz você chorar. Eu odeio ver você chorando e me culpo muito por, às vezes, não conseguir lidar da melhor maneira com você.</p>
+    <p>Sei que as coisas para você são complicadas e, às vezes, a única coisa que você quer é só um carinho, só um pouco de segurança. Eu quero ser seu porto seguro.</p>
+    <p>Quero que saiba que eu estou aqui, amor, e sempre vou estar quando precisar, tá bom?</p>
+  </div>
+
+  <img src="foto6.jpg" class="bloco foto">
+  <img src="foto7.jpg" class="bloco foto">
+  <img src="foto8.jpg" class="bloco foto">
+  <img src="foto9.jpg" class="bloco foto">
+  <img src="foto10.jpg" class="bloco foto">
+
+  <div class="bloco texto-caixa">
+    <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos bichinhos. Feliz Natal! ❤️</p>
+    <div id="contador"></div>
+    <p style="margin-top: 15px;"><strong>Com amor, Kay</strong></p>
+  </div>
+
+  <div class="bloco">
+    <video controls playsinline><source src="video.mp4" type="video/mp4"></video>
   </div>
 
 </div>
 
 <script>
-function abrirSite() {
-  // Toca música
-  const m = document.getElementById("musica");
-  m.volume = 0.4;
-  m.play();
+function iniciarSite(event) {
+  // Efeito visual do clique
+  const click = document.createElement('div');
+  click.className = 'click-effect';
+  click.style.left = event.clientX + 'px';
+  click.style.top = event.clientY + 'px';
+  document.body.appendChild(click);
+  setTimeout(() => click.remove(), 500);
 
-  // Transição de tela
-  document.getElementById("capa").style.opacity = "0";
-  setTimeout(() => {
-    document.getElementById("capa").style.display = "none";
-    document.getElementById("site").style.display = "flex";
-  }, 800);
+  // Som e Troca de tela
+  const musica = document.getElementById("musica");
+  musica.volume = 0.4;
+  musica.play().catch(()=>{});
+
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("conteudo").style.display = "block";
+  
+  // Ativa a detecção de rolagem
+  scrollObserver();
 }
 
-function irParaPag2() {
-  document.getElementById("pag1").classList.remove("ativa");
-  setTimeout(() => {
-    document.getElementById("pag1").style.display = "none";
-    document.getElementById("pag2").classList.add("ativa");
-  }, 10);
-}
-
-// NEVE
+// Neve
 const canvas = document.getElementById("neve");
 const ctx = canvas.getContext("2d");
 function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-resize(); window.onresize = resize;
+window.onresize = resize; resize();
+
 let flocos = [];
-for(let i=0; i<100; i++) flocos.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*3+1, d: Math.random()+1});
+for(let i=0; i<80; i++) flocos.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*3+1, d: Math.random()+1});
+
 function draw() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.fillStyle = "white";
@@ -152,15 +239,29 @@ function draw() {
 }
 setInterval(draw, 30);
 
-// CONTADOR
-const data = new Date("2020-12-20");
-function update() {
-  const diff = new Date() - data;
-  const dias = Math.floor(diff / (1000*60*60*24));
-  document.getElementById("contador").innerText = `Juntos há ${dias} dias! ❤️`;
+// Contador de Tempo
+const dataInicio = new Date("2020-12-20");
+function atualizarContador() {
+  const agora = new Date();
+  const diff = agora - dataInicio;
+  const diasTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const anos = Math.floor(diasTotal / 365.25);
+  const meses = Math.floor((diasTotal % 365.25) / 30.43);
+  const dias = Math.floor(diasTotal - (anos * 365.25) - (meses * 30.43));
+  document.getElementById("contador").innerText = `Juntos há ${anos} anos, ${meses} meses e ${dias} dias ❤️`;
 }
-update();
-</script>
+atualizarContador();
 
+// Efeito de aparecer ao rolar
+function scrollObserver() {
+  const blocos = document.querySelectorAll('.bloco');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visivel');
+    });
+  }, { threshold: 0.1 });
+  blocos.forEach(b => observer.observe(b));
+}
+</script>
 </body>
 </html>
