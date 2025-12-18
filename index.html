@@ -23,7 +23,7 @@ body {
   pointer-events: none; z-index: 1;
 }
 
-/* 🏠 TELA DE INÍCIO (CAPA) */
+/* 🏠 TELA DE INÍCIO */
 .inicio {
   height: 100vh;
   display: flex;
@@ -50,38 +50,30 @@ body {
   background: #1b4332;
   color: white;
   cursor: pointer;
-  font-family: 'Dancing Script', cursive;
   font-weight: bold;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
   animation: pulsar 2s infinite;
 }
 
-@keyframes pulsar {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
+@keyframes pulsar { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-/* 📖 CONTEÚDO (APÓS O CLIQUE) */
+/* 📖 CONTEÚDO EM TIMELINE */
 .conteudo {
-  display: none; /* Começa escondido */
+  display: none;
   max-width: 600px;
   margin: 0 auto;
-  padding: 40px 15px;
+  padding: 60px 15px;
   position: relative;
   z-index: 5;
 }
 
 .bloco {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   opacity: 0;
   transform: translateY(30px);
   transition: all 1s ease-out;
 }
 
-.bloco.visivel {
-  opacity: 1;
-  transform: translateY(0);
-}
+.bloco.visivel { opacity: 1; transform: translateY(0); }
 
 .texto-caixa {
   background: rgba(255, 255, 255, 0.95);
@@ -94,12 +86,12 @@ body {
 }
 
 .foto {
-  width: 90%;
-  max-width: 300px;
-  border: 8px solid white;
+  width: 95%;
+  max-width: 350px;
+  border: 10px solid white;
   border-radius: 5px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  margin: 15px auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  margin: 20px auto;
   display: block;
 }
 
@@ -111,21 +103,26 @@ video {
   margin-top: 30px;
 }
 
-#contador {
-  font-weight: bold;
-  color: #d62828;
-  font-size: 1.6rem;
-  margin-top: 15px;
+#contador { font-weight: bold; color: #d62828; font-size: 1.6rem; margin: 15px 0; }
+
+/* BOTÃO VOLTAR FIXO */
+.btn-voltar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background: #1b4332;
+  color: white;
+  border: 2px solid #ffd700;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 100;
+  display: none;
+  font-family: 'Dancing Script', cursive;
 }
 
-/* Efeito de clique */
-.click-effect {
-  position: absolute; width: 20px; height: 20px;
-  background: #ffd700; border-radius: 50%;
-  pointer-events: none; z-index: 100;
-  animation: explode 0.5s forwards;
-}
 @keyframes explode { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
+.click-effect { position: absolute; width: 20px; height: 20px; background: #ffd700; border-radius: 50%; pointer-events: none; z-index: 100; animation: explode 0.5s forwards; }
 </style>
 </head>
 <body>
@@ -133,10 +130,11 @@ video {
 <canvas id="neve"></canvas>
 
 <div class="inicio" id="inicio">
-  <div style="font-size: 4rem; margin-bottom: 10px;">🎄 ✨ 🎁</div>
-  <h1>Feliz Natal, Meu Amor ❤️</h1>
-  <button class="btn-iniciar" onclick="iniciarSite(event)">Ver Minha Surpresa 🎁</button>
+  <h1>🎄 Feliz Natal, Meu Amor ❤️</h1>
+  <button class="btn-iniciar" onclick="iniciarSite(event)">Ver Surpresa 🎁</button>
 </div>
+
+<button class="btn-voltar" id="btnVoltar" onclick="voltarAoInicio()">⬅️ Voltar ao Início</button>
 
 <div class="conteudo" id="conteudo">
   <audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
@@ -145,47 +143,41 @@ video {
     <p>Fiz este site simples, mas foi feito com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
     <p>Sei que estamos num momento delicado, mas, apesar de tudo, eu continuo te amando loucamente, meu amor. Ainda amo tudo em você: sua risada, seu jeitinho esquisito que eu amo. Continuo sendo o mesmo menino apaixonado por você.</p>
   </div>
-
   <img src="foto1.jpg" class="bloco foto">
 
   <div class="bloco texto-caixa">
     <p>Nossa história sempre foi um tanto conturbada; temos muitos problemas e coisas não resolvidas que nos afetam hoje em dia. Mas quero que saiba que eu ainda estou aqui, ainda estou me esforçando por nós e eu a amo. Sonho em construir nosso futuro juntos.</p>
   </div>
-
   <img src="foto2.jpg" class="bloco foto">
 
   <div class="bloco texto-caixa">
-    <p>Eu sempre admirei você: seu jeito delicado para cuidar das coisas, seu esforço em querer sempre melhorar, sua força, sua vontade e seu desejo de querer mudar. Eu sei o quanto você é forte e eu amo isso em você.</p>
+    <p>Eu sempre admirei você: seu jeito delicado para cuidar das coisas, seu esforço em querer sempre melhorar, sua força, sua vontade e sua vontade de querer mudar. Eu sei o quanto você é forte e eu amo isso em você.</p>
   </div>
-
   <img src="foto3.jpg" class="bloco foto">
 
   <div class="bloco texto-caixa">
-    <p>Eu amo seu carinho, amo o jeito que nós dois somos carentes; chega a ser engraçado, às vezes, o quanto somos grudentos um com o outro. Mas eu amo isso! Amo ficar agarradinho com você, mesmo quando a gente não faz nada. Eu adoro esses momentos com você.</p>
+    <p>Eu amo seu carinho, amo o jeito que nós dois somos carentes; chega a ser engraçado, às vezes, o quanto nós somos grudentos um com o outro. Mas eu amo isso! Amo ficar agarradinho com você, mesmo quando a gente não faz nada. Eu adoro esses momentos com você.</p>
   </div>
-
   <img src="foto4.jpg" class="bloco foto">
 
   <div class="bloco texto-caixa">
-    <p>Eu amo seu jeitinho meio maluca. Quando você fala: "Aonde você iria encontrar outra igual a mim?", eu sempre dou uma risada, mas no fundo eu concordo. Não existe outra além de você para mim. Seu jeito é único e eu a amo.</p>
+    <p>Eu amo seu jeitinho meio maluca. Quando você fala: "Onde você iria encontrar outra igual a mim?", eu sempre dou uma risada, mas no fundo eu concordo. Não existe outra além de você para mim. Seu jeito é único e eu a amo.</p>
   </div>
-
   <img src="foto5.jpg" class="bloco foto">
 
   <div class="bloco texto-caixa">
     <p>Eu queria pedir desculpas. Sei que já errei bastante com você e sinto muito por todas as vezes que já fiz você chorar. Eu odeio ver você chorando e me culpo muito por, às vezes, não conseguir lidar da melhor maneira com você.</p>
-    <p>Sei que as coisas para você são complicadas e, às vezes, a única coisa que você quer é só um carinho, só um pouco de segurança. Eu quero ser seu porto seguro.</p>
-    <p>Quero que saiba que eu estou aqui, amor, e sempre vou estar quando precisar, tá bom?</p>
+    <p>Sei que as coisas para você são complicadas e, às vezes, a única coisa que você quer é só um carinho, só um pouco de segurança. Eu quero ser seu porto seguro. Quero que saiba que eu estou aqui amor, e sempre vou estar quando precisar, tá bom?</p>
   </div>
-
   <img src="foto6.jpg" class="bloco foto">
+
   <img src="foto7.jpg" class="bloco foto">
   <img src="foto8.jpg" class="bloco foto">
   <img src="foto9.jpg" class="bloco foto">
   <img src="foto10.jpg" class="bloco foto">
 
   <div class="bloco texto-caixa">
-    <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos bichinhos. Feliz Natal! ❤️</p>
+    <p>Espero que possamos construir nossa casinha e ter nossos bichinhos. Feliz Natal! ❤️</p>
     <div id="contador"></div>
     <p style="margin-top: 15px;"><strong>Com amor, Kay</strong></p>
   </div>
@@ -198,7 +190,6 @@ video {
 
 <script>
 function iniciarSite(event) {
-  // Efeito visual do clique
   const click = document.createElement('div');
   click.className = 'click-effect';
   click.style.left = event.clientX + 'px';
@@ -206,16 +197,19 @@ function iniciarSite(event) {
   document.body.appendChild(click);
   setTimeout(() => click.remove(), 500);
 
-  // Som e Troca de tela
   const musica = document.getElementById("musica");
   musica.volume = 0.4;
   musica.play().catch(()=>{});
 
   document.getElementById("inicio").style.display = "none";
   document.getElementById("conteudo").style.display = "block";
+  document.getElementById("btnVoltar").style.display = "block";
   
-  // Ativa a detecção de rolagem
   scrollObserver();
+}
+
+function voltarAoInicio() {
+  location.reload(); // Recarrega para voltar à capa
 }
 
 // Neve
@@ -223,10 +217,8 @@ const canvas = document.getElementById("neve");
 const ctx = canvas.getContext("2d");
 function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 window.onresize = resize; resize();
-
 let flocos = [];
 for(let i=0; i<80; i++) flocos.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*3+1, d: Math.random()+1});
-
 function draw() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.fillStyle = "white";
@@ -239,12 +231,11 @@ function draw() {
 }
 setInterval(draw, 30);
 
-// Contador de Tempo
+// Contador
 const dataInicio = new Date("2020-12-20");
 function atualizarContador() {
-  const agora = new Date();
-  const diff = agora - dataInicio;
-  const diasTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const diff = new Date() - dataInicio;
+  const diasTotal = Math.floor(diff / (1000*60*60*24));
   const anos = Math.floor(diasTotal / 365.25);
   const meses = Math.floor((diasTotal % 365.25) / 30.43);
   const dias = Math.floor(diasTotal - (anos * 365.25) - (meses * 30.43));
@@ -252,7 +243,7 @@ function atualizarContador() {
 }
 atualizarContador();
 
-// Efeito de aparecer ao rolar
+// Efeito scroll
 function scrollObserver() {
   const blocos = document.querySelectorAll('.bloco');
   const observer = new IntersectionObserver((entries) => {
