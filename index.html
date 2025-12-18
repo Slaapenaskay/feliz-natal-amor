@@ -15,9 +15,9 @@ html, body {
   height: 100%;
   font-family: 'Dancing Script', cursive;
   text-align: center;
-  /* Degradê Natalino: Vermelho profundo para Rosa Suave */
-  background: linear-gradient(180deg, #7b0909 0%, #d62828 40%, #f9d8e5 100%); 
-  color: #fff; /* Texto branco para destacar no vermelho */
+  /* Degradê: Do Vermelho Natalino ao Rosa Romântico */
+  background: linear-gradient(180deg, #9b111e 0%, #d62828 50%, #f9d8e5 100%); 
+  color: #fff;
   overflow-x: hidden;
   position: relative;
 }
@@ -46,40 +46,30 @@ html, body {
   align-items: center;
 }
 
-.decoracao-topo {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    animation: balanco 3s infinite ease-in-out;
-}
-
-@keyframes balanco {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
 h1 {
-  font-size: clamp(2.5em, 8vw, 4em);
-  color: #ffd700; /* Dourado Natalino */
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
+  font-size: clamp(2.5em, 10vw, 4.5em);
+  color: #ffd700; /* Dourado */
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.6); 
   margin-bottom: 20px;
 }
 
 button {
   padding: 15px 35px;
-  font-size: 5vw;
+  font-size: 5.5vw;
   border: 2px solid #ffd700;
   border-radius: 50px;
-  background: #1a5e1a; /* Verde Árvore de Natal */
+  background: #1b4332; /* Verde Natal */
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: 'Dancing Script', cursive;
+  font-weight: bold;
 }
 
 button:hover {
   transform: scale(1.08);
-  background: #228b22;
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 20px #ffd700;
 }
 
 .conteudo {
@@ -93,42 +83,44 @@ button:hover {
 
 .conteudo.mostrar { opacity: 1; }
 
+/* Bloco de texto estilo "Carta" */
 .texto {
-    background: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente para o texto */
-    padding: 25px;
-    border-radius: 20px;
-    color: #2c3e50;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  border-radius: 20px;
+  color: #2c3e50;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  max-width: 600px;
+  margin: 0 auto 30px auto;
 }
 
 .texto p {
   font-size: 5.5vw;
   line-height: 1.4;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .galeria img {
   width: 42vw;
   max-width: 250px;
-  border: 5px solid white;
+  border: 5px solid white; /* Moldura de foto polaroid */
   border-radius: 10px;
-  margin: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  margin: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
   transition: transform 0.3s;
 }
 
 .galeria img:hover { transform: scale(1.05) rotate(2deg); }
 
 video {
-  margin-top: 25px;
+  margin-top: 20px;
   border: 5px solid #ffd700;
   border-radius: 15px;
   width: 85vw;
   max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* 🌟 Efeito de explosão (Confete Dourado/Rosa) */
 @keyframes explode {
   0% { transform: scale(0.5); opacity: 1; }
   100% { transform: scale(3); opacity: 0; }
@@ -151,7 +143,7 @@ video {
 <canvas id="neve"></canvas>
 
 <div class="inicio" id="inicio">
-  <div class="decoracao-topo">🎄 ✨ 🎁</div>
+  <p style="font-size: 2rem;">✨ 🎄 ✨</p>
   <h1>Feliz Natal, meu amor ❤️</h1>
   <button onclick="iniciar(event)">Abrir Surpresa 🎁</button>
 </div>
@@ -173,11 +165,124 @@ video {
     <p>Espero que possamos construir nosso futuro juntos, nossa casinha e nossos gatinhos e cachorros. Feliz Natal! ❤️</p>
     <p>Ano que vem vou fazer algo ainda mais inesquecível pra você.<br><strong>Kay</strong></p>
 
-    <p id="contador-tempo" style="font-size: 4.8vw; color: #d62828; font-weight: bold; margin-top: 20px;"></p>
+    <p id="contador-tempo" style="font-size: 5vw; color: #d62828; font-weight: bold; margin-top: 20px;"></p>
   </div>
 
   <div class="galeria">
-    <img src="foto1.jpg" alt="Foto 1">
-    <img src="foto2.jpg" alt="Foto 2">
-    <img src="foto3.jpg" alt="Foto 3">
-    <img src="foto4.jpg"
+    <img src="foto1.jpg" alt="Nós dois">
+    <img src="foto2.jpg" alt="Momentos juntos">
+    <img src="foto3.jpg" alt="Meu amor">
+  </div>
+
+  <video controls playsinline>
+    <source src="video.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo.
+  </video>
+
+</div>
+
+<script>
+function iniciar(event) {
+  if (event) {
+    const clickEffect = document.createElement('div');
+    clickEffect.className = 'click-effect';
+    clickEffect.style.left = event.clientX + 'px';
+    clickEffect.style.top = event.clientY + 'px';
+    document.body.appendChild(clickEffect);
+    setTimeout(() => clickEffect.remove(), 500);
+  }
+
+  document.getElementById("inicio").style.display = "none";
+  const conteudo = document.getElementById("conteudo");
+  conteudo.style.display = "block";
+  setTimeout(()=> conteudo.classList.add('mostrar'), 50);
+
+  const musica = document.getElementById("musica");
+  musica.volume = 0.4;
+  musica.play().catch(()=>{});
+}
+
+function toggleMusica() {
+  const musica = document.getElementById("musica");
+  if (musica.paused) musica.play().catch(()=>{});
+  else musica.pause();
+}
+
+const canvas = document.getElementById("neve");
+const ctx = canvas.getContext("2d");
+
+function ajustarCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+ajustarCanvas();
+window.addEventListener("resize", ajustarCanvas);
+
+let flocos = [];
+for(let i=0;i<60;i++){
+  flocos.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*3+1,
+    d: Math.random()+1,
+    tipo: Math.random() < 0.7 ? 'neve' : 'coracao'
+  });
+}
+
+let angulo = 0;
+function desenharNeve() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<flocos.length;i++){
+    let f = flocos[i];
+    ctx.fillStyle = f.tipo === 'neve' ? "rgba(255,255,255,0.8)" : "rgba(255, 105, 180, 0.9)";
+    ctx.beginPath();
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+    ctx.fill();
+  }
+  moverNeve();
+}
+
+function moverNeve(){
+  angulo+=0.01;
+  for(let i=0;i<flocos.length;i++){
+    let f = flocos[i];
+    f.y += Math.pow(f.d,2)+1;
+    f.x += Math.sin(angulo)*1.5;
+    if(f.y > canvas.height) {
+        flocos[i].y = -10;
+        flocos[i].x = Math.random()*canvas.width;
+    }
+  }
+}
+
+setInterval(desenharNeve,30);
+
+// ===================================
+// ⏳ CONTADOR DE TEMPO
+// ===================================
+
+/* IMPORTANTE: Coloquei a data de 5 anos atrás baseado na sua mensagem (março de 2024 foi a que você citou, mas ajuste se necessário) */
+const dataInicioNamoro = new Date("2020-03-27"); 
+
+function atualizarContador() {
+  const agora = new Date();
+  const diferenca = agora - dataInicioNamoro;
+
+  const diasTotal = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+  const anos = Math.floor(diasTotal / 365.25);
+  const meses = Math.floor((diasTotal % 365.25) / 30.4375); 
+  const diasRestantes = Math.floor(diasTotal - (anos * 365.25) - (meses * 30.4375));
+  
+  if (diasTotal > 0) {
+      document.getElementById("contador-tempo").innerHTML = 
+      `Estamos juntos há: ${anos} ano(s), ${meses} mês(es) e ${diasRestantes} dia(s) ❤️`;
+  }
+}
+
+atualizarContador();
+setInterval(atualizarContador, 1000 * 60 * 60 * 24); 
+
+</script>
+
+</body>
+</html>
