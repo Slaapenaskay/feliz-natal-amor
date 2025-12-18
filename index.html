@@ -2,23 +2,23 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Natal Especial ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Natal ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --fundo-natal: radial-gradient(circle, #d62828 0%, #4b0000 100%);
-    --dourado: #ffd700;
+    --bg: radial-gradient(circle, #af0404 0%, #4b0000 100%);
+    --gold: #ffd700;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Dancing Script', cursive;
-    background-color: #4b0000;
+    background: #4b0000;
     color: white;
-    overflow: hidden; /* Mantém o sistema de páginas limpo */
+    overflow: hidden;
     height: 100vh;
 }
 
@@ -27,223 +27,191 @@ body {
     pointer-events: none; z-index: 1;
 }
 
-.secao-pag {
+.tela {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     display: none;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
     align-items: center;
     padding: 20px;
     z-index: 10;
-    background: var(--fundo-natal);
+    background: var(--bg);
 }
 
-.secao-pag.visivel {
+.tela.ativa { display: flex; animation: fade 0.5s; }
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* 📦 CONTAINER ORGANIZADOR (O segredo está aqui) */
+.conteudo-organizado {
     display: flex;
-    animation: trocarPagina 0.5s ease-out;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Espaço entre texto, foto e botão */
+    width: 100%;
+    max-width: 400px;
 }
 
-@keyframes trocarPagina {
-    from { opacity: 0; transform: scale(1.1); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.balao-texto {
-    background: rgba(255, 255, 255, 0.98);
+.carta {
+    background: rgba(255, 255, 255, 0.95);
     color: #2c3e50;
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    max-width: 380px;
-    width: 85%;
-    margin: 15px 0;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 100%;
     font-size: 1.3rem;
-    line-height: 1.3;
-    z-index: 100; /* Texto sempre no topo */
     text-align: center;
 }
 
-/* 📸 POSICIONAMENTO DAS FOTOS */
-.foto-avulsa {
-    width: 150px;
-    border: 5px solid white;
+/* 🖼️ FOTOS (Agora elas respeitam o espaço) */
+.foto-moldura {
+    width: 200px; /* Tamanho da foto */
+    border: 6px solid white;
     border-radius: 4px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.5);
-    position: absolute;
-    z-index: 5; /* Fotos ficam atrás do texto/botão */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transform: rotate(-3deg); /* Leve inclinação para charme */
 }
 
-/* Estilos de posição para evitar bagunça */
-.sozinha { bottom: 20%; left: 50%; transform: translateX(-50%) rotate(-3deg); }
-.esq-topo { top: 5%; left: 5%; transform: rotate(-10deg); }
-.dir-baixo { bottom: 5%; right: 5%; transform: rotate(10deg); }
-.dir-topo { top: 5%; right: 5%; transform: rotate(8deg); }
-
-/* 🔘 BOTÕES */
-.area-botoes {
+.dupla-fotos {
     display: flex;
     gap: 10px;
-    z-index: 110;
+    justify-content: center;
+    width: 100%;
 }
 
-.btn-acao {
+.foto-pequena {
+    width: 140px;
+    border: 4px solid white;
+}
+
+/* 🔘 BOTÕES */
+.botao {
     padding: 12px 25px;
-    font-size: 1.1rem;
-    border: 2px solid var(--dourado);
-    border-radius: 50px;
+    font-size: 1.2rem;
     background: #1b4332;
     color: white;
+    border: 2px solid var(--gold);
+    border-radius: 50px;
     cursor: pointer;
     font-family: 'Dancing Script', cursive;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.btn-voltar { background: #6c757d; border: 2px solid white; }
-
-video {
-    width: 90%;
-    max-width: 340px;
-    border: 4px solid white;
-    border-radius: 12px;
-    z-index: 100;
-}
-
-#tempo-juntos { color: #d62828; font-weight: bold; }
+video { width: 100%; max-width: 300px; border: 4px solid white; border-radius: 10px; }
 </style>
 </head>
 <body>
 
 <canvas id="neve-canvas"></canvas>
-<audio id="trilha-sonora" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+<audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 
-<div class="secao-pag visivel" id="tela0">
-    <h1 style="font-size: 3rem; color: var(--dourado); text-shadow: 2px 2px 10px #000; margin-bottom: 30px;">Feliz Natal, Meu Amor ❤️</h1>
-    <button class="btn-acao" onclick="irPag(0, 1)">Abrir Surpresa 🎁</button>
+<div class="tela ativa" id="t0">
+    <h1 style="font-size: 3rem; color: var(--gold); text-shadow: 2px 2px 10px #000; margin-bottom: 30px; text-align: center;">Feliz Natal, Amor ❤️</h1>
+    <button class="botao" onclick="ir(0, 1)">Abrir Surpresa 🎁</button>
 </div>
 
-<div class="secao-pag" id="tela1">
-    <img src="foto1.jpg" class="foto-avulsa sozinha">
-    <div class="balao-texto">
-        <p>Fiz este site simples com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
-    </div>
-    <div class="area-botoes">
-        <button class="btn-acao" onclick="irPag(1, 2)">Próxima Página ➔</button>
-    </div>
-</div>
-
-<div class="secao-pag" id="tela2">
-    <img src="foto2.jpg" class="foto-avulsa esq-topo">
-    <div class="balao-texto">
-        <p>Apesar de tudo, eu continuo te amando loucamente. Continuo sendo o mesmo menino apaixonado por você.</p>
-    </div>
-    <div class="area-botoes">
-        <button class="btn-acao btn-voltar" onclick="irPag(2, 1)">⬅</button>
-        <button class="btn-acao" onclick="irPag(2, 3)">Continuar ➔</button>
+<div class="tela" id="t1">
+    <div class="conteudo-organizado">
+        <div class="carta">Fiz este site com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</div>
+        <img src="foto1.jpg" class="foto-moldura">
+        <button class="botao" onclick="ir(1, 2)">Próxima Página ➔</button>
     </div>
 </div>
 
-<div class="secao-pag" id="tela3">
-    <img src="foto3.jpg" class="foto-avulsa dir-baixo">
-    <div class="balao-texto">
-        <p>Nossa história sempre foi um tanto conturbada, mas quero que saiba que eu ainda estou aqui, me esforçando por nós.</p>
-    </div>
-    <div class="area-botoes">
-        <button class="btn-acao btn-voltar" onclick="irPag(3, 2)">⬅</button>
-        <button class="btn-acao" onclick="irPag(3, 4)">Próxima ➔</button>
-    </div>
-</div>
-
-<div class="secao-pag" id="tela4">
-    <img src="foto4.jpg" class="foto-avulsa esq-topo">
-    <img src="foto5.jpg" class="foto-avulsa dir-baixo">
-    <div class="balao-texto">
-        <p>Eu amo nosso carinho e o quanto somos grudentos. Adoro ficar agarradinho com você, mesmo sem fazer nada.</p>
-    </div>
-    <div class="area-botoes">
-        <button class="btn-acao btn-voltar" onclick="irPag(4, 3)">⬅</button>
-        <button class="btn-acao" onclick="irPag(4, 5)">Virar Página ➔</button>
+<div class="tela" id="t2">
+    <div class="conteudo-organizado">
+        <div class="carta">Apesar de tudo, eu continuo te amando loucamente. Continuo sendo o mesmo menino apaixonado por você.</div>
+        <img src="foto2.jpg" class="foto-moldura" style="transform: rotate(3deg);">
+        <div style="display:flex; gap:10px;">
+            <button class="botao" style="background:#666" onclick="ir(2, 1)">⬅</button>
+            <button class="botao" onclick="ir(2, 3)">Continuar ➔</button>
+        </div>
     </div>
 </div>
 
-<div class="secao-pag" id="tela5">
-    <img src="foto6.jpg" class="foto-avulsa dir-topo">
-    <div class="balao-texto">
-        <p>Amo seu jeitinho meio maluca. Não existe outra igual a você para mim. Seu jeito é único e eu a amo.</p>
-    </div>
-    <div class="area-botoes">
-        <button class="btn-acao btn-voltar" onclick="irPag(5, 4)">⬅</button>
-        <button class="btn-acao" onclick="irPag(5, 6)">Continuar ➔</button>
-    </div>
-</div>
-
-<div class="secao-pag" id="tela6">
-    <img src="foto7.jpg" class="foto-avulsa esq-topo">
-    <img src="foto8.jpg" class="foto-avulsa dir-baixo">
-    <div class="balao-texto">
-        <p>Queria pedir desculpas pelos meus erros. Odeio ver você chorar e quero ser seu porto seguro sempre.</p>
-    </div>
-    <div class="area-botoes">
-        <button class="btn-acao btn-voltar" onclick="irPag(6, 5)">⬅</button>
-        <button class="btn-acao" onclick="irPag(6, 7)">Finalizando... ➔</button>
+<div class="tela" id="t3">
+    <div class="conteudo-organizado">
+        <div class="carta">Nossa história tem problemas, mas eu ainda estou aqui, me esforçando por nós.</div>
+        <div class="dupla-fotos">
+            <img src="foto3.jpg" class="foto-moldura foto-pequena">
+            <img src="foto4.jpg" class="foto-moldura foto-pequena" style="transform: rotate(5deg);">
+        </div>
+        <button class="botao" onclick="ir(3, 4)">Virar Página ➔</button>
     </div>
 </div>
 
-<div class="secao-pag" id="tela7">
-    <img src="foto9.jpg" class="foto-avulsa dir-topo">
-    <img src="foto10.jpg" class="foto-avulsa esq-topo" style="top:60%">
-    <div class="balao-texto">
-        <p>Você é o amor da minha vida. Obrigado por cada momento. Espero construirmos nossa casinha logo!</p>
-    </div>
-    <div class="area-botoes">
-        <button class="btn-acao btn-voltar" onclick="irPag(7, 6)">⬅</button>
-        <button class="btn-acao" onclick="irPag(7, 8)">Ver o Vídeo ❤️</button>
+<div class="tela" id="t4">
+    <div class="conteudo-organizado">
+        <div class="carta">Eu amo nosso carinho e o quanto somos grudentos. Adoro ficar agarradinho com você.</div>
+        <div class="dupla-fotos">
+            <img src="foto5.jpg" class="foto-moldura foto-pequena" style="transform: rotate(-4deg);">
+            <img src="foto6.jpg" class="foto-moldura foto-pequena">
+        </div>
+        <button class="botao" onclick="ir(4, 5)">Próxima ➔</button>
     </div>
 </div>
 
-<div class="secao-pag" id="tela8">
-    <video controls playsinline><source src="video.mp4" type="video/mp4"></video>
-    <div class="balao-texto">
-        <div id="tempo-juntos"></div>
-        <p style="margin-top: 5px;"><strong>Com amor, Kay</strong></p>
+<div class="tela" id="t5">
+    <div class="conteudo-organizado">
+        <div class="carta">Amo seu jeitinho meio maluca. Não existe outra igual a você para mim.</div>
+        <img src="foto7.jpg" class="foto-moldura">
+        <button class="botao" onclick="ir(5, 6)">Continuar ➔</button>
     </div>
-    <button class="btn-acao" onclick="location.reload()">Recomeçar 🎄</button>
+</div>
+
+<div class="tela" id="t6">
+    <div class="conteudo-organizado">
+        <div class="carta">Desculpe meus erros. Odeio te ver chorar e quero ser seu porto seguro sempre.</div>
+        <div class="dupla-fotos">
+            <img src="foto8.jpg" class="foto-moldura foto-pequena">
+            <img src="foto9.jpg" class="foto-moldura foto-pequena" style="transform: rotate(4deg);">
+        </div>
+        <button class="botao" onclick="ir(6, 7)">Finalizando... ➔</button>
+    </div>
+</div>
+
+<div class="tela" id="t7">
+    <div class="conteudo-organizado">
+        <img src="foto10.jpg" class="foto-moldura" style="width:150px; margin-bottom:0;">
+        <video controls playsinline><source src="video.mp4" type="video/mp4"></video>
+        <div class="carta">
+            <p>Feliz Natal! ❤️</p>
+            <div id="dias" style="color:red; font-weight:bold"></div>
+        </div>
+        <button class="botao" onclick="location.reload()">Recomeçar 🎄</button>
+    </div>
 </div>
 
 <script>
-function irPag(idAtu, idProx) {
-    if(idAtu === 0) {
-        const s = document.getElementById("trilha-sonora");
-        s.volume = 0.3; s.play();
-    }
-    document.getElementById("tela" + idAtu).classList.remove("visivel");
-    document.getElementById("tela" + idProx).classList.add("visivel");
+function ir(a, p) {
+    if(a === 0) { document.getElementById("musica").play(); }
+    document.getElementById("t" + a).classList.remove("ativa");
+    document.getElementById("t" + p).classList.add("ativa");
 }
 
-const cvs = document.getElementById("neve-canvas");
-const ctx = cvs.getContext("2d");
-function res() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
-res(); window.onresize = res;
-let f = [];
-for(let i=0; i<70; i++) f.push({x: Math.random()*cvs.width, y: Math.random()*cvs.height, r: Math.random()*3+1, d: Math.random()+1});
+const c = document.getElementById("neve-canvas");
+const ctx = c.getContext("2d");
+function r() { c.width = window.innerWidth; c.height = window.innerHeight; }
+r(); window.onresize = r;
+let fs = [];
+for(let i=0; i<60; i++) fs.push({x: Math.random()*c.width, y: Math.random()*c.height, v: Math.random()+1});
 function ani() {
-    ctx.clearRect(0,0,cvs.width,cvs.height);
-    ctx.fillStyle = "white"; ctx.beginPath();
-    for(let n of f) {
-        ctx.moveTo(n.x, n.y); ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
-        n.y += n.d; if(n.y > cvs.height) n.y = -10;
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.fillStyle = "white";
+    for(let f of fs) {
+        ctx.beginPath(); ctx.arc(f.x, f.y, 2, 0, Math.PI*2); ctx.fill();
+        f.y += f.v; if(f.y > c.height) f.y = -10;
     }
-    ctx.fill(); requestAnimationFrame(ani);
+    requestAnimationFrame(ani);
 }
 ani();
 
-const start = new Date("2020-12-20");
-function calc() {
-    const diff = new Date() - start;
-    const dias = Math.floor(diff / (1000*60*60*24));
-    document.getElementById("tempo-juntos").innerText = `Juntos há ${dias} dias! ❤️`;
-}
-calc();
+const d = Math.floor((new Date() - new Date("2020-12-20")) / 86400000);
+document.getElementById("dias").innerText = "Juntos há " + d + " dias!";
 </script>
 </body>
 </html>
