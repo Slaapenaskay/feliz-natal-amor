@@ -46,39 +46,52 @@ body {
 }
 
 @keyframes trocarPagina {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .balao-texto {
     background: rgba(255, 255, 255, 0.98);
     color: #2c3e50;
-    padding: 25px;
+    padding: 20px;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    max-width: 450px;
-    width: 90%;
+    max-width: 400px;
+    width: 85%;
     margin-bottom: 20px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 1.3;
-    z-index: 20;
+    z-index: 50; /* Sempre na frente */
     position: relative;
+    text-align: center;
 }
 
+/* 📸 CONFIGURAÇÃO DAS FOTOS */
 .foto-avulsa {
-    width: 180px;
-    border: 6px solid white;
+    width: 160px; /* Tamanho ajustado para caber duas */
+    border: 5px solid white;
     border-radius: 4px;
     box-shadow: 0 8px 15px rgba(0,0,0,0.5);
     position: absolute;
     z-index: 15;
+    transition: 0.3s;
 }
 
-/* Posições variadas */
-.pos-esq { bottom: 30px; left: 5%; transform: rotate(-8deg); }
-.pos-dir { top: 30px; right: 5%; transform: rotate(10deg); }
-.pos-topo-esq { top: 40px; left: 5%; transform: rotate(-5deg); }
-.pos-baixo-dir { bottom: 40px; right: 5%; transform: rotate(5deg); }
+/* Posições para uma foto só */
+.pos-sozinha { bottom: 30px; transform: rotate(-5deg); }
+
+/* Posições para DUAS fotos na mesma página */
+.foto-esquerda {
+    top: 40px;
+    left: 5%;
+    transform: rotate(-10deg);
+}
+
+.foto-direita {
+    bottom: 40px;
+    right: 5%;
+    transform: rotate(10deg);
+}
 
 .btn-acao {
     padding: 12px 35px;
@@ -89,15 +102,16 @@ body {
     color: white;
     cursor: pointer;
     font-family: 'Dancing Script', cursive;
-    z-index: 30;
+    z-index: 100;
 }
 
 video {
     width: 90%;
-    max-width: 380px;
+    max-width: 350px;
     border: 4px solid white;
     border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    z-index: 60;
 }
 
 #tempo-juntos { color: #d62828; font-weight: bold; font-size: 1.2rem; }
@@ -109,46 +123,45 @@ video {
 <audio id="trilha-sonora" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 
 <div class="secao-pag visivel" id="tela0">
-    <h1 style="font-size: 3.5rem; color: var(--dourado); text-shadow: 2px 2px 10px #000; margin-bottom: 30px; text-align: center;">Feliz Natal, Meu Amor ❤️</h1>
+    <h1 style="font-size: 3rem; color: var(--dourado); text-shadow: 2px 2px 10px #000; margin-bottom: 30px; text-align: center;">Feliz Natal, Meu Amor ❤️</h1>
     <button class="btn-acao" onclick="irPag(0, 1)">Abrir Surpresa 🎁</button>
 </div>
 
 <div class="secao-pag" id="tela1">
-    <img src="foto1.jpg" class="foto-avulsa pos-esq">
+    <img src="foto1.jpg" class="foto-avulsa pos-sozinha">
     <div class="balao-texto">
         <p>Fiz este site simples com muito carinho. Mesmo sem dinheiro, queria te dar algo que viesse de mim. ❤️</p>
-        <p>Apesar de tudo, eu continuo te amando loucamente. Continuo sendo o mesmo menino apaixonado por você.</p>
     </div>
     <button class="btn-acao" onclick="irPag(1, 2)">Próxima Página ➔</button>
 </div>
 
 <div class="secao-pag" id="tela2">
-    <img src="foto2.jpg" class="foto-avulsa pos-dir">
+    <img src="foto2.jpg" class="foto-avulsa pos-sozinha">
     <div class="balao-texto">
-        <p>Nossa história sempre foi um tanto conturbada, mas quero que saiba que eu ainda estou aqui, me esforçando por nós. Sonho em construir nosso futuro juntos.</p>
+        <p>Apesar de tudo, eu continuo te amando loucamente. Continuo sendo o mesmo menino apaixonado por você.</p>
     </div>
     <button class="btn-acao" onclick="irPag(2, 3)">Continuar ➔</button>
 </div>
 
 <div class="secao-pag" id="tela3">
-    <img src="foto3.jpg" class="foto-avulsa pos-baixo-dir">
+    <img src="foto3.jpg" class="foto-avulsa pos-sozinha">
     <div class="balao-texto">
-        <p>Eu sempre admirei você: seu jeito delicado, seu esforço em melhorar e sua força. Eu amo isso em você.</p>
+        <p>Nossa história sempre foi um tanto conturbada, mas quero que saiba que eu ainda estou aqui, me esforçando por nós.</p>
     </div>
     <button class="btn-acao" onclick="irPag(3, 4)">Virar Página ➔</button>
 </div>
 
 <div class="secao-pag" id="tela4">
-    <img src="foto4.jpg" class="foto-avulsa pos-topo-esq">
-    <img src="foto5.jpg" class="foto-avulsa pos-baixo-dir">
+    <img src="foto4.jpg" class="foto-avulsa foto-esquerda">
+    <img src="foto5.jpg" class="foto-avulsa foto-direita">
     <div class="balao-texto">
-        <p>Eu amo nosso carinho e o quanto somos grudentos. Adoro ficar agarradinho com você, mesmo sem fazer nada.</p>
+        <p>Eu amo nosso carinho e o quanto somos grudentos. Adoro ficar agarradinho com você.</p>
     </div>
     <button class="btn-acao" onclick="irPag(4, 5)">Próxima ➔</button>
 </div>
 
 <div class="secao-pag" id="tela5">
-    <img src="foto6.jpg" class="foto-avulsa pos-esq">
+    <img src="foto6.jpg" class="foto-avulsa pos-sozinha">
     <div class="balao-texto">
         <p>Amo seu jeitinho meio maluca. Não existe outra além de você para mim. Seu jeito é único.</p>
     </div>
@@ -156,19 +169,19 @@ video {
 </div>
 
 <div class="secao-pag" id="tela6">
-    <img src="foto7.jpg" class="foto-avulsa pos-dir">
-    <img src="foto8.jpg" class="foto-avulsa pos-esq">
+    <img src="foto7.jpg" class="foto-avulsa foto-esquerda">
+    <img src="foto8.jpg" class="foto-avulsa foto-direita">
     <div class="balao-texto">
-        <p>Queria pedir desculpas pelos meus erros. Eu odeio ver você chorar e quero ser seu porto seguro hoje e sempre.</p>
+        <p>Queria pedir desculpas pelos meus erros. Eu odeio ver você chorar e quero ser seu porto seguro.</p>
     </div>
     <button class="btn-acao" onclick="irPag(6, 7)">Quase lá... ➔</button>
 </div>
 
 <div class="secao-pag" id="tela7">
-    <img src="foto9.jpg" class="foto-avulsa pos-topo-esq">
-    <img src="foto10.jpg" class="foto-avulsa pos-baixo-dir">
+    <img src="foto9.jpg" class="foto-avulsa foto-esquerda">
+    <img src="foto10.jpg" class="foto-avulsa foto-direita">
     <div class="balao-texto">
-        <p>Você é o amor da minha vida. Obrigado por cada momento ao meu lado.</p>
+        <p>Você é o amor da minha vida. Obrigado por cada momento ao meu lado. Feliz Natal!</p>
     </div>
     <button class="btn-acao" onclick="irPag(7, 8)">Ver o Final ❤️</button>
 </div>
@@ -176,7 +189,6 @@ video {
 <div class="secao-pag" id="tela8">
     <video controls playsinline><source src="video.mp4" type="video/mp4"></video>
     <div class="balao-texto">
-        <p>Espero que possamos ter nossa casinha e nossos bichinhos. Feliz Natal!</p>
         <div id="tempo-juntos"></div>
         <p style="margin-top: 10px;"><strong>Com amor, Kay</strong></p>
     </div>
